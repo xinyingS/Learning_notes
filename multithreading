@@ -1,0 +1,28 @@
+Reference from: https://www.udemy.com/multithreading-and-parallel-computing-in-java/
+
+
+一、Course Architechture
+    1. Basic multithreading
+       (1) Process vs thread
+       (2) Threads, runnables
+       (3) Volatile, join(), notify()
+       (4) Low and high level concurrency
+    2. Complex problems
+       (1) Library project
+       (2) Dining philosophers problem
+       (3) Simulation: mine sweeper
+       (4) Conway's game of life
+    3. Parellel Algorithm
+
+二、
+   1.
+     Sequential
+
+     multithreading  ->
+     concurrency    -> at same time
+
+   2.
+     Thread join() -> waits for thread died (to finish it's task)
+
+   3. Volatile -> slower -> threads to visit same area(RAM: Main memory)
+      Cache  -> faster -> only one thread (located in it) can visit
