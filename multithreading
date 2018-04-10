@@ -26,3 +26,47 @@ Reference from: https://www.udemy.com/multithreading-and-parallel-computing-in-j
 
    3. Volatile -> slower -> threads to visit same area(RAM: Main memory)
       Cache  -> faster -> only one thread (located in it) can visit
+
+   4. DeadLock vs LiveLock
+      DeadLock in block state; LiveLock not in block state, threads communicate each other
+      but they are too busy responding to each other to resume work.
+
+   5. Synchronized
+
+      public synchronized static void method1(){}  -> equal to lock the whole class,
+      public synchronized static void method2(){}  -> no chance to execute same time
+
+      //synchronized block
+      |   public static void method1(){
+              synchronized(className.class){
+                  ...;
+              }
+          }
+      |
+          public static void method2(){
+              synchronized(className.class){
+                  ...;
+              }
+          }
+          这种方法还是锁住同一个class.
+
+      improve method:
+      private Object lock1 = new Object();
+      private Object lock2 = new Object();
+      public static void method1(){
+              synchronized(lock1){
+                  ...;
+              }
+      }
+
+      public static void method2(){
+          synchronized(lock2){
+              ...;
+          }
+      }
+
+    6. wait() vs notify()
+       (1) must same lock (same class)
+       (2) notify() random wake up already wait() threads
+       (3) if all, we should use notifyAll()
+        
