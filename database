@@ -1,0 +1,31 @@
+DB && ADB
+
+一. DB
+   (1) Database System Architecture - data abstraction; data independence.
+   (2) Relational Databases - Relational data model; SQL.
+   (3) Database design - Entity-relationship model, functional dependencies; normal forms; dependency preservation; information loss.
+   (4) Introduction to OLAP - Multidimensional data model, data aggregation.
+   (5) Storage Strategies - Indices and B-trees.
+   (6) Transaction Management - ACID properties, concurrency control and recovery.
+
+1. Relational Database -> a set of relations (relation -> a set of rows or tuples)
+   (1) instance: a table with rows and columns
+   (2) schema: name and type of each column.
+
+2. SQL -> DDL -> Create/ Drop/ alter...
+          DML (Data manipulation language) -> select from where...
+
+3. Integrity Constraints(ICs)
+   IC: condition that must be true for any instance of the database. eg: domain constraints
+       ICs are specified when schema is defined.
+       ICs are checked when relations are modified.
+   A legal instance of a relation is one that satisfies all specified ICs.
+
+   (1) Primary key constraints
+   (2) Candidate key -> "UNIQUE"   candidate key choose one to be primary key.
+   (3) Foreign key
+   (4) Referential Integrity:
+       -> delete/ update
+         a. Default is NO ACTION(delete/ update is rejected)
+         b. CASCADE(also delete all tuples that refer to deleted tuple)
+         c. SET NULL/ SET DEFAULT(set foreign key value of referencing tuple)
