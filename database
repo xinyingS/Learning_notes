@@ -35,7 +35,7 @@ DB && ADB
 4. SQL
    (1) LIKE is used for string matching. "_" stands for any one character and "%" stands for 0 or more
        arbitrary characters.
-   (2) UNION -> function as OR
+   (2) UNION -> function as OR 并集
           SELECT S.sid
           FROM Sailors S, Boats B, Reserves R
           WHERE S.sid=R.sid AND R.bid=B.bid
@@ -52,10 +52,16 @@ DB && ADB
           FROM Sailors S, Boats B, Reserves R
           WHERE S.sid=R.sid AND R.bid=B.bid
                 AND B.color=‘green’
-  (3) INTERSECT -> function as AND
+  (3) INTERSECT -> function as AND 交集
           ...
   (4) Nested queries -> ppt example
       IN, EXISTS, UNIQUE, NOT IN, NOT EXISTS, NOT UNIQUE, ANY, ALL
+
+      (EXISTS(table) -> true, if table not empty)
+      (Unique(table) -> table not have duplicates)
+      (Not UNIQUE(table) -> more than...)
+      (> ANY -> some)
+      (>= ALL -> greater than anyone else)
 
   (5) Aggregate Operators ->
       COUNT(*)
@@ -64,6 +70,7 @@ DB && ADB
       AVG([DISTINCT] A)
       MAX(A)
       MIN(A)
+      -> attribute function
 
   (6) Group by ->
       SELECT  [DISTINCT] target-list (attribute names must be a subset of grouping- list)
