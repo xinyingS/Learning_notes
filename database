@@ -29,3 +29,63 @@ DB && ADB
          a. Default is NO ACTION(delete/ update is rejected)
          b. CASCADE(also delete all tuples that refer to deleted tuple)
          c. SET NULL/ SET DEFAULT(set foreign key value of referencing tuple)
+  (5) Domain constraints: Field values must be of right types.
+  (6) General constraints: Check...
+
+4. SQL
+   (1) LIKE is used for string matching. "_" stands for any one character and "%" stands for 0 or more
+       arbitrary characters.
+   (2) UNION -> function as OR
+          SELECT S.sid
+          FROM Sailors S, Boats B, Reserves R
+          WHERE S.sid=R.sid AND R.bid=B.bid
+                AND (B.color=‘red’ OR B.color=‘green’
+
+          The same as:
+
+          SELECT S.sid
+          FROM Sailors S, Boats B, Reserves R
+          WHERE S.sid=R.sid AND R.bid=B.bid
+                AND B.color=‘red’
+          UNION
+          SELECT S.sid
+          FROM Sailors S, Boats B, Reserves R
+          WHERE S.sid=R.sid AND R.bid=B.bid
+                AND B.color=‘green’
+  (3) INTERSECT -> function as AND
+          ...
+  (4) Nested queries -> ppt example
+      IN, EXISTS, UNIQUE, NOT IN, NOT EXISTS, NOT UNIQUE, ANY, ALL
+
+  (5) Aggregate Operators ->
+      COUNT(*)
+      COUNT([DISTINCT] A)
+      SUM([DISTINCT] A)
+      AVG([DISTINCT] A)
+      MAX(A)
+      MIN(A)
+
+  (6) Group by ->
+      SELECT  [DISTINCT] target-list (attribute names must be a subset of grouping- list)
+      FROM     relation- list
+      WHERE    qualification
+      GROUP BY  grouping- list
+      HAVING    group- qualification (eliminate some groups/ single value per group)
+
+      (group by and having is a pair)
+
+  (7) 内连接：指连接结果仅包含符合连接条件的行，参与连接的两个表都应该符合连接条件。
+      外连接：连接结果不仅包含符合连接条件的行同时也包含自身不符合条件的行。包括左外连接、右外连接和全外连接。
+
+5. View
+   Create view ...
+   as select ...
+
+   -> Drop view
+
+6. Triggers
+   -> Procedure that starts automatically if specified changes occur to DBMS.
+
+   a. Event(activates the trigger)
+   b. Condition(tests whether the triggers should run)
+   c. Action(what happens if the trigger runs)
