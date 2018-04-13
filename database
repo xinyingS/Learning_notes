@@ -84,6 +84,8 @@ DB && ADB
   (7) 内连接：指连接结果仅包含符合连接条件的行，参与连接的两个表都应该符合连接条件。
       外连接：连接结果不仅包含符合连接条件的行同时也包含自身不符合条件的行。包括左外连接、右外连接和全外连接。
 
+  (8) 查看表结构 -> desc/ describe table_name
+
 5. View
    Create view ...
    as select ...
@@ -96,3 +98,34 @@ DB && ADB
    a. Event(activates the trigger)
    b. Condition(tests whether the triggers should run)
    c. Action(what happens if the trigger runs)
+
+7. Schema refinement and normal forms
+  (1) Redundancy:
+      – Data for branch-name, branch-city, assets are repeated for each loan
+        that a branch makes
+      – Wastes space
+      – Complicates updating, introducing possibility of inconsistency of
+        assets value
+  (2) Null values
+      – Cannot store information about a branch if no loans exist
+      – Can use null values, but they are difficult to handle
+
+8. Functional Dependencies (FDs)
+  (1) An FD is a statement about all allowable relations.
+  (2) K is a candidate key for R means that K -> R.
+      However, K -> R does not require K to be minimal.
+      (-> means determines)
+  (3) Armstrong’s Axioms (X, Y, Z are sets of attributes):
+      – Reflexivity: If Y X, then X Y
+      – Augmentation: If X Y, then XZ YZ for any Z
+      – Transitivity: If X Y and Y Z, then X Z
+
+      Couple of additional rules (that follow from AA):
+      – Union: If X Y and X Z, then X YZ
+      – Decomposition: If X YZ, then X Y and X Z
+
+9.  Schema Refinement
+
+tables --------------------> Better  tables
+       Decomposition           less Redundancy
+       Normalization
