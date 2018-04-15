@@ -138,3 +138,78 @@ Reference from: https://www.udemy.com/multithreading-and-parallel-computing-in-j
 
 	  		execute() -> runnable + callable
 	  		submit() -> runnable
+
+        .shutdown() -> initiates an orderly shutdown in which previously submitted tasks are executed, but no new
+                       tasks will be accepted.
+
+  11. Callable vs Runnable
+
+      The Callable interface is similar to Runnable, in that both are designed for classes whose instances are potentially executed by another thread.
+      A Runnable, however, does not return a result and cannot throw a checked exception.
+
+      detail: Reference -> https://www.geeksforgeeks.org/callable-future-java/
+      (1) The need for callable
+          There are two ways of creating threads – one by extending the Thread class and other by creating a thread with a Runnable.
+          However, one feature lacking in  Runnable is that we cannot make a thread return result when it terminates, i.e. when run() completes.
+          For supporting this feature, the Callable interface is present in Java.
+      (2) Callable vs Runnable
+          For implementing Runnable, the run() method needs to be implemented which does not return anything,
+          while for a Callable, the call() method needs to be implemented which returns a result on completion.
+          Note that a thread can’t be created with a Callable, it can only be created with a Runnable.
+          Another difference is that the call() method can throw an exception whereas run() cannot.
+      (3)Future:
+          When the call() method completes, answer must be stored in an object known to the main thread, so that the main thread can know about the result that the thread returned.
+          How will the program store and obtain this result later? For this, a Future object can be used. Think of a Future as an object that holds the result – it may not hold it right now,
+          but it will do so in the future (once the Callable returns).
+          Thus, a Future is basically one way the main thread can keep track of the progress and result from other threads. To implement this interface, 5 methods have to be overridden,
+          but as the example below uses a concrete implementation from the library, only the important methods are listed here.
+
+  *12. Latch -> CountDownLatch -> (multiple threads can wait for each other)
+       This is used to synchronize one or more tasks by forcing them to wait for the completion of a set of operations being performed by other tasks
+
+    		- You give an initial count to a CountDownLatch object, and any task that calls await()
+   				on that object will block until the count reaches zero
+
+    		- Other tasks may call countDown() on the object to reduce the count, presumably when a task finishes its job
+    		- A CountDownLatch is designed to be used in a one-shot fashion; the count cannot be reset !!!
+    				If you need a version that resets the count, you can use a CyclicBarrier instead
+
+   		  - The tasks that call countDown() are not blocked when they make that call. Only the call to await() is blocked until the count reaches zero
+
+     		A typical use is to divide a problem into n independently solvable tasks and create a CountDownLatch with a value of n.
+    		When each task is finished it calls countDown() on the latch. Tasks waiting for the problem to be solved call await()
+    		on the latch to hold themselves back until it is completed
+
+        For e.g.:
+        you want to trigger something after 10000 users download an image.
+
+        await() -> wait all the threads finish their tasks.
+
+ *13. CyclicBarrier
+       A CyclicBarrier is used in situations where you want to create a group of
+       tasks to perform work in parallel + wait until they are all finished before
+       moving on to the next step
+       -> something like join()
+       -> something like CountDownLatch
+
+       CountDownLatch: one-shot event CyclicBarrier: it can be reused over and over
+       again.
+
+            + cyclicBarrier has a barrier action: a runnable, that will run automatically
+              when the count reaches 0 !!
+
+       new CyclicBarrier(N) -> N threads will wait for each other
+
+       WE CAN NOT REUSE LATCHES BUT WE CAN REUSE CyclicBarriers --> reset() !!!
+
+  14. BlockingQueues
+
+      BlockingQueue -> an interface that represents a queue that is thread safe
+  		      Put items or take items from it ...
+
+ 		  For example: one thread putting items into the queue and another thread taking items from it
+ 			at the same time !!!
+ 				 We can do it with producer-consumer pattern !!!
+
+ 		     put() putting items to the queue
+ 		     take() taking items from the queue
