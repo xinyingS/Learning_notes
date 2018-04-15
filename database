@@ -129,3 +129,103 @@ DB && ADB
 tables --------------------> Better  tables
        Decomposition           less Redundancy
        Normalization
+
+10. Index -> B+ Tree
+--------------------------------------
+    Query Processor
+
+    Transaction Mgr      -> DBMS
+    Indexing
+    Buffer Mgr
+
+--------------------------------------
+    Index Classification
+
+    (1) Primary vs. secondary: If search key contains
+        primary key, then called primary index.
+            Unique index: Search key contains a candidate key.
+    (2) Clustered vs. unclustered: If order of data records
+        is the same as, or `close to’, order of data
+        entries, then called clustered index.
+            A file can be clustered on at most one search key.
+            Cost of retrieving data records through index varies
+            greatly based on whether index is clustered or not!
+    (3) Dense vs. sparse: If there is an index data entry
+        for each data records then called dense index.
+
+11. Transaction
+    A transaction is the DBMS’s abstract view of a user
+    program: a sequence of reads and writes.
+
+    (1) Transaction properties (ACID)
+        A. Atomicity -> All or nothing.
+                        A transaction might commit after completing all its
+                        actions, or it could abort (or be aborted by the DBMS)
+                        after executing some actions.
+                        A very important property guaranteed by the DBMS
+                        for all transactions is that they are atomic. That is, a
+                        user can think of a Xact as always executing all its
+                        actions in one step, or not executing any actions at all.
+
+        C. Consistency -> Transaction take db in a consistent state and leaves
+                          db in a consistent state.
+
+        I. Isolation -> Execution of one Xact is isolated from that of other Xacts.
+
+        D. Durability -> Changes from committness transaction will persist.
+
+    (2) undo -> uncommitted transaction (roll back)
+        redo -> committed transaction (crash situation)
+
+        ----------------------------------
+    T1
+     |        crash        (before) undo/ abort -> (enforce Atomicity)
+     |
+    \|/    ----commit
+
+              crash        (after) redo -> (enforce Durability)
+
+    (3) good Schedules properties
+        a. Serializables
+        b. recoverable
+        c. cascadeless
+
+        --------------------------------------------
+        good transaction properties
+        ACID
+
+        Atomicity: All actions in the Xact happen, or none happen.
+        Consistency: If each Xact is consistent, and the DB starts consistent, it ends up consistent.
+        Isolation: Execution of one Xact is isolated from that of other Xacts.
+        Durability: If a Xact commits, its effects persist.
+
+        Concurrency in a DBMS -> Users submit transactions, and can think of each transaction as executing by itself.
+
+    (4) Lock- Based Concurrency Control
+        a. Two- Phase Locking(2PL)  -> A transaction can not request additional locks once it releases any locks.
+        b. Strict 2PL  -> All locks held by a transaction are released when the transaction completes. (only Serializable)
+
+    (5) DeadLock
+        Cycle of transaction waiting for locks to be released by each other.
+
+        a. wait- die Strategies
+        b. wound - wait Strategies
+
+        DeadLock handlity -> a. prevention a. detection
+
+12. Crash Recovery -> (PPT)
+    The Recovery Manager guarantees Atomicity & Durability.
+
+    (1) Write- Ahead Logging (WAL)
+        a. Must force the log record for an update before the corresponding data page gets to disk.  -> guarantees Atomicity.
+        b. Must write all log records for a Xact before commit. -> guarantees Durability.
+
+    (2) Disk Crash (how to recovery)
+
+        softcrash    Ok
+        vs
+        hardcrash (disk lost)
+
+        solution:
+        Keep log all the time
+        periodic back up
