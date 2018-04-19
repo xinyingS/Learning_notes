@@ -1,4 +1,6 @@
-High Performance MySQL
+High Performance MySQL 3rd Edition
+-> Good book to read.
+
 1. Transaction
 ACID: Atomicity, Consistency, Isolation, and Durability.
 
@@ -10,3 +12,35 @@ ACID: Atomicity, Consistency, Isolation, and Durability.
 (3) Isolation: The results of a transaction are usually indivisible to other transactions until the transaction is complete.
 
 (4) Durability: Once committed, a transaction’s changes are permanent.This means the changes must be recorded such that data won’t be lost in a system crash.
+
+2. Isolation level
+
+   Isolation is more complex than it looks. The SQL standard defines four isolation levels, with specific rules for which changes are and
+   aren’t visible inside and outside a trans- action.
+   Lower isolation levels typically allow higher concurrency and have lower overhead.
+
+   (1) READ UNCOMMITTED -> dirty read
+       In the READ UNCOMMITTED isolation level, transactions can view the results of un- committed transactions.
+       At this level, many problems can occur unless you really, really know what you are doing and have a good reason for doing it.
+       This level is rarely used in practice, because its performance isn’t much better than the other levels, which have many advantages.
+       Reading uncommitted data is also known as a dirty read.
+
+   (2) READ COMMITTED -> (most database systems default)
+       The default isolation level for most database systems (but not MySQL!) is READ COMMITTED. It satisfies the simple definition of isolation used earlier:
+       a transaction will see only those changes made by transactions that were already committed when it began, and its changes won’t be visible to others until it has committed.
+       This level still allows what’s known as a nonrepeatable read. This means you can run the same statement twice and see different data.
+
+   (3) REPEATABLE READ -> (MySQL default)
+       REPEATABLE READ solves the problems that READ UNCOMMITTED allows. It guarantees that any rows a transaction reads will “look the same” in subsequent reads within the same transaction,
+       but in theory it still allows another tricky problem: phantom reads. Simply put, a phantom read can happen when you select some range of rows, another transaction inserts a new row into the range,
+       and then you select the same range again; you will then see the new “phantom” row. InnoDB and XtraDB solve the phantom read problem with multiversion concurrency control,
+       which we ex- plain later in this chapter.
+       REPEATABLE READ is MySQL’s default transaction isolation level.
+
+   (4) SERIALIZABLE
+       The highest level of isolation, SERIALIZABLE, solves the phantom read problem by forcing transactions to be ordered so that they can’t possibly conflict.
+       In a nutshell, SERIALIZABLE places a lock on every row it reads. At this level, a lot of timeouts and lock contention can occur.
+       We’ve rarely seen people use this isolation level, but your application’s needs might force you to accept the decreased concurrency in favor of the data stability that results.
+
+       chart -> book page transaction 9
+       important
