@@ -1,0 +1,12 @@
+High Performance MySQL
+1. Transaction
+ACID: Atomicity, Consistency, Isolation, and Durability.
+
+(1) Atomicity: A transaction must function as a single indivisible unit of work so that the entire transaction is either applied or rolled back.
+          When transactions are atomic, there is no such thing as a partially completed transaction: it’s all or nothing.
+
+(2) Consistency: The database should always move from one consistent state to the next.
+
+(3) Isolation: The results of a transaction are usually indivisible to other transactions until the transaction is complete.
+
+(4) Durability: Once committed, a transaction’s changes are permanent.This means the changes must be recorded such that data won’t be lost in a system crash.
