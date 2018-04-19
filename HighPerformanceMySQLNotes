@@ -44,3 +44,11 @@ ACID: Atomicity, Consistency, Isolation, and Durability.
 
        chart -> book page transaction 9
        important
+3. Index
+  (1) Type of Indexes
+     <1> B - tree indexes: B-Tree indexes work well for lookups by the full key value, a key range, or a key prefix.
+     <2> hash indexes
+     <3> Spatial (R-Tree) indexes
+     <4> Full- text indexes
+
+     page 151 pdf 181
