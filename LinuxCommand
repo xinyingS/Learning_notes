@@ -71,4 +71,5 @@ shell -> .sh
 wget
  下载内容到Download里
 
-scp
+scp -> sshcopy
+通过ssh的形式，把本机与服务器内容交互。
