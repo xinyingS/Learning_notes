@@ -1,43 +1,74 @@
 Linux Command
 
 ls
- *-a
- *-l
+ *-a: 显示全部文件
+ *-l: -r -w 详情显示 read/write
+ *combination eg: ls -al
 
-mkdir
+mkdir 创建文件夹
  *-p
 
-cd
+touch 创建文件
+ * eg: touch run.py
+
+
+cd 打开目录
+ eg: cd directory/
+ * . 当前目录
+ * .. 上一级目录
 
 
 rm
+ *-r 递归删除（删干净为止） eg: rm -r directory/
+
+mv
+ * eg: mv eg.txt directory/
+ * eg: mv eg.txt eg2.txt 把eg.txt重命名为eg2.txt
 
 
 cp
-
+ * eg: cp eg2.txt eg3.txt 复制2文件命名为3
 
 cat
+* 显示内容
+* 导入文件 eg: cat eg.txt
+             echo "123" > eg.txt （echo "" 显示一个字符串，其实就是写东西进eg.txt)
+             cat eg.txt
+* 覆盖追加内容 eg: cat eg.txt > eg2.txt (把eg.txt的内容覆盖进eg2.txt)
+      > 覆盖
+      >> 追加 add
 
 
 sudo
+ *root 权限的身份来执行某条命令
+ *command not found: 系统自带的命令 sudo ls 可以，用户输入的sudo cd 报错。
 
 
-grep
+grep 按行匹配，按行搜索
+ * 搜索文件内容 eg: cat eg.txt | grep 123
 
 
-ifconfig
+ ps 查询当前进程
+  *-a eg: ps -a | grep bash
 
+
+ifconfig 找ip
+ * eth0
+ * ifconfig | grep inet | grep broadcast
 
 ipconfig
 
 
 vim/vi
+ * vim cheat sheet
 
 
-shell
+shell -> .sh
+ * 执行多个命令行，脚本编写
+ * chmod +x *.sh 加权限
 
 
 wget
-
+ 下载内容到Download里
 
 scp
