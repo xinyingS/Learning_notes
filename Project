@@ -2,17 +2,23 @@ Project
 
 Auto Completes
 
-功能：利用MySQL，实现搜索引擎自动填充功能
-数据量大概是1GB
+一、环境：Docker + Hadoop
+选Docker的原因：
+1.密闭的环境 -> 各自独立的容器
+2.独立、干净没有其它dependency干扰
+3.Share hostOs -> 可以多个人使用
 
-数据预处理：
+二、实现功能：利用MySQL，实现搜索引擎自动填充功能
+数据量大概是5GB
+
+三、数据预处理：
 1. read sentence by sentence
-2. non- alphabetic
+2. remove all non- alphabetic symbols
 
-框架：
+四、框架：
 user 做完的map reduce 作业提交到HDFS client -> master slave -> 若干个小的map task 和reduce task.
 
-步骤：
+五、步骤：
 利用概率统计，构建N-Gram 模型，这个模型主要是利用Map reduce实现的。Map reduce处理好原始数据后会写入到数据库中。
 数据库中主要存储，输入词组加接下来跟着的词组以及相关概率。
 
