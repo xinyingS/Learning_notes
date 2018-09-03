@@ -1,0 +1,25 @@
+Project
+
+Auto Completes
+
+功能：利用MySQL，实现搜索引擎自动填充功能
+数据量大概是1GB
+
+数据预处理：
+1. read sentence by sentence
+2. non- alphabetic
+
+框架：
+user 做完的map reduce 作业提交到HDFS client -> master slave -> 若干个小的map task 和reduce task.
+
+步骤：
+利用概率统计，构建N-Gram 模型，这个模型主要是利用Map reduce实现的。Map reduce处理好原始数据后会写入到数据库中。
+数据库中主要存储，输入词组加接下来跟着的词组以及相关概率。
+
+依据概率统计理论是： Probability(word | phrase) = count(word + phrase) / count(phrase)
+            简略 -> Probability(word | phrase) = count(word + phrase)
+
+主要是两个map reduce 作业：
+1. map reduce1 -> N- Gram Library
+
+2. map reduce2 -> 语言模型并写入到数据库
