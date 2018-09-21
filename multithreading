@@ -53,7 +53,7 @@ Reference from: https://www.udemy.com/multithreading-and-parallel-computing-in-j
       DeadLock in block state; LiveLock not in block state, threads communicate each other
       but they are too busy responding to each other to resume work.
 
-   5. Synchronized
+   5. Synchronized -> (idea . concurrency6/ concurrency7)
 
       public synchronized static void method1(){}  -> equal to lock the whole class,
       public synchronized static void method2(){}  -> no chance to execute same time
@@ -87,7 +87,7 @@ Reference from: https://www.udemy.com/multithreading-and-parallel-computing-in-j
           }
       }
 
-    6. wait() vs notify()
+    6. wait() vs notify() -> (idea. concurrency8)
        (1) must same lock (same class)
        (2) notify() random wake up already wait() threads
        (3) if all, we should use notifyAll()
@@ -102,8 +102,27 @@ Reference from: https://www.udemy.com/multithreading-and-parallel-computing-in-j
 
        you could use notifyAll() in this situation as well, but you would unnecessarily wake threads that can't do anything anyway.
 
+    6.additional -> (idea. concurrency8)
+      wait() vs sleep()
+      Ref: https://javarevisited.blogspot.com/2011/12/difference-between-wait-sleep-yield.html
 
-    7. Locks
+       wait()
+      (1) wait() method releases the lock.
+      (2) wait() is the non-static method - public final void wait() throws InterruptedException { //...}
+      (3) wait() should be notified by notify() or notifyAll() methods.
+      (4) wait() method needs to be called from a loop in order to deal with false alarm.
+      (5) wait() method must be called from synchronized context (i.e. synchronized method or block), otherwise it will throw IllegalMonitorStateException
+
+       sleep()
+      (1) sleep() method doesn't release the lock.
+      (2) sleep() is the method of java.lang.Thread class.
+      (3) sleep() is the static method - public static void sleep(long millis, int nanos) throws InterruptedException { //... }
+          after the specified amount of time, sleep() is completed.
+      (4) sleep() better not to call from loop(i.e. see code below).
+      (5) sleep() may be called from anywhere. there is no specific requirement.
+
+
+    7. Locks -> (idea. concurrency9)
        (1) ReentrantLock -> implement the Lock interface.
 
            - it has the same behavior as the "synchronized approach"
