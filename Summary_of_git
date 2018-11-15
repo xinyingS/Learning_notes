@@ -1,0 +1,52 @@
+Summary of Git vs Github
+
+1.	The difference between Git vs Github
+Git is a revision control system, a tool to manage your source code history.
+GitHub is a hosting service for Git repositories.
+Git is the tool, GitHub is the service for projects that use Git.
+
+Below reference from https://services.github.com/on-demand/github-cli/create-remote-repository
+
+2.	Create the remote repository on GitHub
+(1)	On GitHub.com, create a new repository
+(2)	Name your repository
+(3)	Enter a description for your repository
+(4)	Choose Public visibility
+(5)	Select Initialize this repository with a README.
+(6)	Click Create repository
+(7)	Copy the URL provided by your repository Code tab (Clone or download).
+(8)	 Type "cd ~/" in your command line
+(9)	"git clone URL"
+(10)	"git status". (git status is a command you will use often to verify the current state of your repository and the files it contains.)
+
+3.	Reference from:
+https://learn.sparkfun.com/tutorials/using-github-to-share-with-sparkfun/committing-pushing-and-pulling
+(1) Commit - committing is the process which records changes in the repository. Think of it as a snapshot of the current status of the project. Commits are done locally.
+(2) Pull - a pull grabs any changes from the GitHub repository and merges them into your local repository.
+(3) Push - pushing sends the recent commit history from your local repository up to GitHub. If you're the only one working on a repository, pushing is fairly simple. If there are others accessing the repository, you may need to pull before you can push.
+(4) Sync - syncing is like pulling, but instead of connecting to your GitHub copy of the forked repo, it goes back to the original repository and brings in any changes. Once you've synced your repository, you need to push those changes back to your GitHub account.
+
+4. Command lines and procedure
+Summary about my procedure
+(1)	"cd ~/Desktop/github/git_study"
+(2)	"git clone URL" (clone repository)
+(3)	"git status" (check git status)
+(4)	"git pull"
+(5)	"git add file_name" or "git add ."(add all)
+(6)	"git commit -m "message_you_want_to" (m means message)
+(7)	"git push origin master"
+
+Extra command lines:
+(1)	"git log" (view log)
+(2)	"git rm file_name" (delete file) or delete on local computer
+(3)	"git checkout file_name"(undelete file)
+(4)	"git add --all" (handle add and delete)
+(5)	"clear" (open another terminate new page)
+(6)	"git branch" (view all branch)
+(7)	"git branch branch_new_name" (create new branch)
+(8)	"git checkout branch_name" (switch to that branch)
+(9)	"git merge another_branch" (merge branch)
+(10)	"git branch -m old_name new_name" (rename branch)
+(11)	"git branch -D branch_name" (delete branch name)
+
+To be continued…
